@@ -11,7 +11,6 @@ public class HelloBootApplication {
 
 	@GetMapping(value = "/")
 	public String hello() {
-		Error
 		return "Hello World!";
 	}
 
