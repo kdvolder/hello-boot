@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HelloBootApplication",
+            "request": "launch",
+            "mainClass": "com.example.demo.HelloBootApplication",
+            "projectName": "hello-boot"
+        }
+    ]
+}

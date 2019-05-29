@@ -1,0 +1,11 @@
+{
+    "boot-java.remote-apps": [
+        {
+            "jmxurl": "service:jmx:rmi://localhost:32999/jndi/rmi://localhost:32999/jmxrmi",
+            "host": "hello-boot-gukgzhlc.cfapps.io",
+            "urlScheme": "https",
+            "port": 443
+        }
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
+}
