@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HelloBootApplication {
 
 	@GetMapping("/bye")
-	public String bye(@RequestParam String param) {
+	public String bye() {
 		return "So long";
 	}
 
