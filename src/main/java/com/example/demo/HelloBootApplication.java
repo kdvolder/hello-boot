@@ -12,10 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HelloBootApplication {
 
 	@GetMapping("/bye")
-	public String bye() {
+	public String byeaaaa() {
 		return "So long";
 	}
 
+	@GetMapping("/aaaasd")
+	public String booo() {
+		return "So long";
+	}
+ 
 	@GetMapping(value = "/")
 	public String hello() {
 		return "Hello World!";
