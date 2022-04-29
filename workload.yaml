@@ -1,0 +1,168 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  annotations:
+    kapp.k14s.io/identity: v1;default/carto.run/Workload/hello-boot;carto.run/v1alpha1
+    kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"tanzu-java-web-app","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1648090784657491452","kapp.k14s.io/association":"v1.4c6db14cafeef9a63304a417028a47e3"},"name":"hello-boot","namespace":"default"},"spec":{"source":{"git":{"ref":{"branch":"master"},"url":"https://github.com/kdvolder/hello-boot"}}}}'
+    kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
+  creationTimestamp: "2022-03-24T21:58:34Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/part-of: tanzu-java-web-app
+    apps.tanzu.vmware.com/workload-type: web
+    kapp.k14s.io/app: "1648090784657491452"
+    kapp.k14s.io/association: v1.4c6db14cafeef9a63304a417028a47e3
+  name: hello-boot
+  namespace: default
+  resourceVersion: "68236318"
+  uid: d3e0a8ac-8688-407f-9e7e-1ca966429a30
+spec:
+  source:
+    git:
+      ref:
+        branch: master
+      url: https://github.com/kdvolder/hello-boot
+status:
+  conditions:
+  - lastTransitionTime: "2022-03-24T21:58:38Z"
+    message: ""
+    reason: Ready
+    status: "True"
+    type: SupplyChainReady
+  - lastTransitionTime: "2022-03-24T21:59:48Z"
+    message: ""
+    reason: ResourceSubmissionComplete
+    status: "True"
+    type: ResourcesSubmitted
+  - lastTransitionTime: "2022-03-24T21:59:48Z"
+    message: ""
+    reason: Ready
+    status: "True"
+    type: Ready
+  observedGeneration: 1
+  resources:
+  - name: source-provider
+    outputs:
+    - digest: sha256:aa82f8438e0109d8d84a00ee04886157ce5ea2175be7ce29524e10aa94d132f7
+      lastTransitionTime: "2022-03-24T21:58:41Z"
+      name: url
+      preview: |
+        http://source-controller.flux-system.svc.cluster.local./gitrepository/default/hello-boot/6ad9ec8ac589736138f8b046bd238f776a860abd.tar.gz
+    - digest: sha256:bf1da99378ce6a28576d048b79ff35efed1ccddca6d3752236ea2db97219e390
+      lastTransitionTime: "2022-03-24T21:58:41Z"
+      name: revision
+      preview: |
+        master/6ad9ec8ac589736138f8b046bd238f776a860abd
+    stampedRef:
+      apiVersion: source.toolkit.fluxcd.io/v1beta1
+      kind: GitRepository
+      name: hello-boot
+      namespace: default
+    templateRef:
+      apiVersion: carto.run/v1alpha1
+      kind: ClusterSourceTemplate
+      name: source-template
+  - name: deliverable
+    stampedRef:
+      apiVersion: carto.run/v1alpha1
+      kind: Deliverable
+      name: hello-boot
+      namespace: default
+    templateRef:
+      apiVersion: carto.run/v1alpha1
+      kind: ClusterTemplate
+      name: deliverable-template
+  - inputs:
+    - name: source-provider
+    name: image-builder
+    outputs:
+    - digest: sha256:d71e573d506b7c1d233d368d12d29347b69484e5e24d6560ed8f675c6fbc1f69
+      lastTransitionTime: "2022-03-24T21:59:42Z"
+      name: image
+      preview: |
+        dev.registry.tanzu.vmware.com/app-live-view/test/hello-boot-default@sha256:0d16ae3d18e4bdd3c97b7f75d2936639a406bfeea1c16ff9b66d581e69a1f7b9
+    stampedRef:
+      apiVersion: kpack.io/v1alpha2
+      kind: Image
+      name: hello-boot
+      namespace: default
+    templateRef:
+      apiVersion: carto.run/v1alpha1
+      kind: ClusterImageTemplate
+      name: kpack-template
+  - inputs:
+    - name: image-builder
+    name: config-provider
+    outputs:
+    - digest: sha256:90ecf0f08d539dff86125031e13336d6e02b110c030cd4d184779ac2194e2ee3
+      lastTransitionTime: "2022-03-24T21:59:48Z"
+      name: config
+      preview: |-
+        metadata:
+            annotations:
+                boot.spring.io/actuator: http://:8081/actuator
+                boot.spring.io/version: 2.6.3
+                conventions.apps.tanzu.vmware.com/applied-conventions: |-
+                    spring-boot-convention/spring-boot
+                    spring-boot-convention/spring-boot-graceful-shutdown
+                    spring-boot-convention/spring-boot-web
+                    spring-boot-convention/spring-boot-actuator
+                    spring-boot-convention/spring-boot-actuator-probes
+                    appliveview-sample/app-live-view-connector
+                    appliveview-sample/app-live-view-appflavours
+                    appliveview-sample/app-live-view-systemproperties
+                developer.conventions/target-containers: workload
+                kapp.k14s.io/identity: v1;default/carto.run/Workload/hello-boot;carto.run/v1alpha1
+                kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"tanzu-java-web-app","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1648090784657
+    stampedRef:
+      apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+      kind: PodIntent
+      name: hello-boot
+      namespace: default
+    templateRef:
+      apiVersion: carto.run/v1alpha1
+      kind: ClusterConfigTemplate
+      name: convention-template
+  - inputs:
+    - name: config-provider
+    name: app-config
+    outputs:
+    - digest: sha256:297ebca1237be43746b271c490c1829e92a8990f3f47efba1637f9ad0123d056
+      lastTransitionTime: "2022-03-24T21:59:48Z"
+      name: config
+      preview: "delivery.yml: |\n    apiVersion: serving.knative.dev/v1\n    kind:
+        Service\n    metadata:\n      name: hello-boot\n      labels:\n        app.kubernetes.io/part-of:
+        tanzu-java-web-app\n        apps.tanzu.vmware.com/workload-type: web\n        kapp.k14s.io/app:
+        \"1648090784657491452\"\n        kapp.k14s.io/association: v1.4c6db14cafeef9a63304a417028a47e3\n
+        \       app.kubernetes.io/component: run\n        carto.run/workload-name:
+        hello-boot\n    spec:\n      template:\n        metadata:\n          annotations:\n
+        \           boot.spring.io/actuator: http://:8081/actuator\n            boot.spring.io/version:
+        2.6.3\n            conventions.apps.tanzu.vmware.com/applied-conventions:
+        |-\n              spring-boot-convention/spring-boot\n              spring-boot-convention/spring-boot-graceful-shutdown\n
+        \             spring-boot-convention/spring-boot-web\n              spring-boot-convention/spring-boot-actuator\n
+        \             spring-boot-convention/spring-boot-actuator-probes\n              appliveview-sample/app-live-view-connector\n
+        \      "
+    stampedRef:
+      apiVersion: v1
+      kind: ConfigMap
+      name: hello-boot
+      namespace: default
+    templateRef:
+      apiVersion: carto.run/v1alpha1
+      kind: ClusterConfigTemplate
+      name: config-template
+  - inputs:
+    - name: app-config
+    name: config-writer
+    stampedRef:
+      apiVersion: carto.run/v1alpha1
+      kind: Runnable
+      name: hello-boot-config-writer
+      namespace: default
+    templateRef:
+      apiVersion: carto.run/v1alpha1
+      kind: ClusterTemplate
+      name: config-writer-template
+  supplyChainRef:
+    kind: ClusterSupplyChain
+    name: source-to-url
