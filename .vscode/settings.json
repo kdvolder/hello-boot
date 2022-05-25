@@ -1,11 +1,6 @@
 {
-    "boot-java.remote-apps": [
-        {
-            "jmxurl": "service:jmx:rmi://localhost:32999/jndi/rmi://localhost:32999/jmxrmi",
-            "host": "hello-boot-gukgzhlc.cfapps.io",
-            "urlScheme": "https",
-            "port": 443
-        }
-    ],
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.server.launchMode": "Standard",
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms100m",
+    "extensions.ignoreRecommendations": true
 }
