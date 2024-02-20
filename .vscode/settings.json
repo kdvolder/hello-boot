@@ -1,6 +1,4 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
-    "java.server.launchMode": "Standard",
-    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms100m",
-    "extensions.ignoreRecommendations": true
+    "java.compile.nullAnalysis.mode": "automatic"
 }
