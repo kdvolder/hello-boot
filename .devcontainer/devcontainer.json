@@ -2,6 +2,5 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/java
 {
 	"name": "Kris's devcontainer playground",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "gcr.io/dap-local-workstation/kdv-devcontainer-test"
 }
